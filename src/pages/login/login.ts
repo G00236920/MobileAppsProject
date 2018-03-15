@@ -49,7 +49,7 @@ export class LoginPage {
 
   createUser(newUser){
 
-    console.log( this.afd.addUser('user', 'password') +" q");
+    console.log( this.afd.addUser('user', 'password'));
 
   }
 
@@ -60,22 +60,6 @@ export class LoginPage {
 
   addUser(){
 
-  }
-
-  invalidLogin(text, title) {
-    
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: ['Dismiss']
-    });
-
-    alert.present();
-  }
-
-  login(){
-
-    
   }
 
 }

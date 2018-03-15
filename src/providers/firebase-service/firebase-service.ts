@@ -2,6 +2,7 @@ import { HttpModule } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireList } from 'angularfire2/database';
+import { AlertController } from 'ionic-angular';
 
 import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/first';
@@ -17,7 +18,7 @@ import 'rxjs/add/operator/map';
 export class FirebaseServiceProvider {
 
 
-  constructor(public http: HttpModule, public afd: AngularFireDatabase) {
+  constructor(public http: HttpModule, public afd: AngularFireDatabase, private alertCtrl: AlertController) {
 
   }
 
@@ -28,10 +29,21 @@ export class FirebaseServiceProvider {
       snapshot.key;
       snapshot.child("password").val();
 
+      if(password.valueOf() == snapshot.child("password").val()){
+
+        this.invalidLogin(`${login} Your Password is ${password}`, "Logged in");
+
+      }
+      else{
+
+        this.invalidLogin(`Email or Password is incorrect`, "Try Again");
+
+      }
+
     }).then(snapshot => {
 
       return snapshot.key;
-      
+
     });
 
   }
@@ -44,6 +56,17 @@ export class FirebaseServiceProvider {
     
     });
 
+  }
+
+  invalidLogin(text, title) {
+    
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: ['Dismiss']
+    });
+
+    alert.present();
   }
 
 }
