@@ -15,11 +15,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
+  showLogin = true;
+  showReg = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  VerifyUser(){
+
+  }
+
+  openReg(){
+    this.showLogin = false;
+    this.showReg = true;
+  }
+
+  createUser(){
+
+  }
+
+  goBack(){
+    this.showLogin = true;
+    this.showReg = false;
   }
 
 }
