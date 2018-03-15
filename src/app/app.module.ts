@@ -19,14 +19,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 
 
-  const fbConfig = {
-    apiKey: "AIzaSyDMgNFK5N-9qE9WhvZrZpGT1JjhEl4VzII",
-    authDomain: "doubleentry-24759.firebaseapp.com",
-    databaseURL: "https://doubleentry-24759.firebaseio.com",
-    projectId: "doubleentry-24759",
-    storageBucket: "doubleentry-24759.appspot.com",
-    messagingSenderId: "183196557807"
-  };
+const fbConfig = {
+  apiKey: "AIzaSyDMgNFK5N-9qE9WhvZrZpGT1JjhEl4VzII",
+  authDomain: "doubleentry-24759.firebaseapp.com",
+  databaseURL: "https://doubleentry-24759.firebaseio.com",
+  projectId: "doubleentry-24759",
+  storageBucket: "doubleentry-24759.appspot.com",
+  messagingSenderId: "183196557807"
+};
 
 @NgModule({
   declarations: [
