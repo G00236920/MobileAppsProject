@@ -1,6 +1,6 @@
 {
   "name": "AccountingApp",
-  "app_id": "",
+  "app_id": "9fbb7919",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
