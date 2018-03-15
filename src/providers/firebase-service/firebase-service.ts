@@ -19,6 +19,7 @@ export class FirebaseServiceProvider {
   getUsers(){
 
     return this.afd.list('/users');
+    //test
 
   }
 
