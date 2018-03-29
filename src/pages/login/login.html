@@ -16,13 +16,13 @@
         <ion-col>
           <ion-list inset>
             
-            <ion-item>
-              <ion-input type="text" placeholder="Email" name="email"  required></ion-input>
+            <ion-item name="userEmail">
+              <ion-input type="text" placeholder="Email" [(ngModel)]="userEmail" [ngModelOptions]="{standalone:true}" required ></ion-input>
             </ion-item>
             
             <ion-item>
               <!--[(ngModel)]="registerCredentials.password"-->
-              <ion-input type="password" placeholder="Password" name="password"  required></ion-input>
+              <ion-input type="password" placeholder="Password" [(ngModel)]="userPassword" [ngModelOptions]="{standalone:true}" required></ion-input>
             </ion-item>
             
           </ion-list>
@@ -52,20 +52,20 @@
             <ion-list inset>
               
               <ion-item>
-                <ion-input type="text" placeholder="Email" name="email"  required></ion-input>
+                <ion-input type="text" placeholder="Email" [(ngModel)]="newEmail" [ngModelOptions]="{standalone:true}" required></ion-input>
               </ion-item>
               
               <ion-item>
                 <!--[(ngModel)]="registerCredentials.password"-->
-                <ion-input type="password" placeholder="Password" name="password"  required></ion-input>
+                <ion-input type="password" placeholder="Password" [(ngModel)]="password1" [ngModelOptions]="{standalone:true}"  required></ion-input>
               </ion-item>
 
               <ion-item>
-                  <ion-input type="password" placeholder="Confirm Password" name="password2"  required></ion-input>
+                  <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="password2" [ngModelOptions]="{standalone:true}" required></ion-input>
               </ion-item>
 
               <ion-item>
-                  <ion-input type="text" placeholder="Company Name" name="CompanyName"  required></ion-input>
+                  <ion-input type="text" placeholder="Company Name" [(ngModel)]="companyName" [ngModelOptions]="{standalone:true}"  required></ion-input>
               </ion-item>
               
             </ion-list>

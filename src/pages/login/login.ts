@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-import { FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { TabsPage } from '../tabs/tabs';
-import { AlertController } from 'ionic-angular';
 import { AngularFireList } from 'angularfire2/database';
-
+import { DataSnapshot } from '@firebase/database';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,6 +17,7 @@ import { AngularFireList } from 'angularfire2/database';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
   users: AngularFireList<any>;
@@ -26,8 +25,7 @@ export class LoginPage {
   showLogin = true;
   showReg = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider , private alertCtrl: AlertController) {
-
+  constructor( public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider ) {
   }
 
   ionViewDidLoad() {
@@ -41,15 +39,32 @@ export class LoginPage {
     this.showReg = true;
   }
   
-  async VerifyUser(){
+  VerifyUser(){
 
-   await console.log( await this.afd.getUsers('test','test') );
+    if(this.userEmail != null && this.userPassword !=null){
+
+      let test = this.afd.getUsers(  this.userEmail, this.userPassword).then( loginData => {
+
+        if(this.userPassword.valueOf() == loginData.child("password").val()){
+
+          this.navCtrl.push(TabsPage);
+
+        }
+        else{
+
+          this.afd.popUp(`Email or Password is incorrect`, "Try Again");
+
+        }
+        
+      });
+
+    }
 
   }
 
   createUser(newUser){
 
-    console.log( this.afd.addUser('user', 'password'));
+    this.afd.addUser( 'newUser', 'password');
 
   }
 
@@ -58,7 +73,7 @@ export class LoginPage {
     this.showReg = false;
   }
 
-  addUser(){
+  letMeIn(){
 
   }
 

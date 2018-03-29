@@ -8,6 +8,7 @@ import { SendPage } from '../pages/send/send';
 import { AccountsPage } from '../pages/accounts/accounts';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { FormsModule } from '@angular/forms';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -42,6 +43,7 @@ const fbConfig = {
     HttpModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(fbConfig),
+    FormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
