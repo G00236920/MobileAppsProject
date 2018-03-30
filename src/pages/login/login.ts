@@ -25,7 +25,14 @@ export class LoginPage {
   showLogin = true;
   showReg = false;
 
-  constructor( public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider ) {
+  private userLogin: string;
+  private userPassword: string;
+  private password1: string;
+  private password2: string = "";
+  private companyName: string = "";
+  private newUser: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -34,47 +41,62 @@ export class LoginPage {
 
   }
 
-  openReg(){
+  openReg() {
     this.showLogin = false;
     this.showReg = true;
   }
-  
-  VerifyUser(){
 
-    if(this.userEmail != null && this.userPassword !=null){
+  VerifyUser() {
 
-      let test = this.afd.getUsers(  this.userEmail, this.userPassword).then( loginData => {
 
-        if(this.userPassword.valueOf() == loginData.child("password").val()){
+    if (this.userLogin != null && this.userPassword != null) {
+
+      let test = this.afd.getUsers(this.userLogin, this.userPassword).then(loginData => {
+
+        if (this.userPassword.valueOf() == loginData.child("password").val()) {
 
           this.navCtrl.push(TabsPage);
 
         }
-        else{
+        else {
 
-          this.afd.popUp(`Email or Password is incorrect`, "Try Again");
+          this.afd.popUp(`Username or Password is incorrect`, "Try Again");
 
         }
-        
+
       });
 
     }
 
   }
 
-  createUser(newUser){
+  createUser() {
 
-    this.afd.addUser( 'newUser', 'password');
+    if(this.password2.length < 8){
+      this.afd.popUp(`Passwords must be 8 or more characters`, "Try Again");
+    }
+    else if((this.password1 == this.password2) && this.newUser != null && this.password1 != null){
+
+      this.afd.addUser(this.newUser, this.password1, this.companyName).then( snapshot => {
+
+          if(snapshot.child("password").val() == null){
+            
+            this.navCtrl.push(TabsPage);
+
+          }
+
+      });
+
+    }
+    else {
+      this.afd.popUp(`Passwords do not match`, "Try Again");
+    }
 
   }
 
-  goBack(){
+  goBack() {
     this.showLogin = true;
     this.showReg = false;
-  }
-
-  letMeIn(){
-
   }
 
 }

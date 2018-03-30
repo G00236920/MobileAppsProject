@@ -35,28 +35,35 @@ export class FirebaseServiceProvider {
 
   }
 
-  addUser(login: string, password: string){
+  addUser(login: string, password: string, company: string):Promise<any>{
 
-    this.afd.database.ref(`users/${login}`).once("value", snapshot => {
+    let status = this.afd.database.ref(`users/${login}`).once("value", snapshot => {
 
       if(snapshot.hasChild("password")){
 
         this.popUp(`This user Already Exists`, "Try Again");
+
+        return snapshot;
 
       }
       else{
 
         this.afd.object(`users/${login}`).update({
 
-          password: `${password}`
+          password: `${password}`,
+          company: `${company}`
         
         });
 
         this.popUp(`Welcome to your new account`, "Welcome");
 
+        return snapshot;
+
       }
 
     });
+
+    return status;
 
   }
 
