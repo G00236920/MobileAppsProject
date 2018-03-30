@@ -103,4 +103,17 @@ export class FirebaseServiceProvider {
 
   }
 
+  checkAccounts(): Promise<any>{
+
+    let accounts = this.afd.database.ref("users/" +this.currentUser +"/accounts").once("value", snapshot => {
+
+    }).then(snap =>{
+
+      return snap;
+    });
+
+    return accounts;
+
+  }
+
 }

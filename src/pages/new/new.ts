@@ -14,17 +14,28 @@ export class NewPage {
 
   constructor(public navCtrl: NavController, public afd: FirebaseServiceProvider) {
 
-
   }
 
   addAccount(){
 
-    console.log("Pressed");
-    this.afd.addAccount(this.accountName, this.balance);
+    let accounts = this.afd.checkAccounts().then( listOfAccounts =>{
 
-    this.navCtrl.push(TabsPage);
+      if(listOfAccounts.child(this.accountName).val() == null){
+        
+        this.afd.addAccount(this.accountName, this.balance);
+  
+        this.navCtrl.push(TabsPage);
+    
+        this.afd.popUp(`Account Added`, "New Account");
 
-    this.afd.popUp(`Account Added`, "New Account");
+      }
+      else{
+        
+        this.afd.popUp(`Account Already Exists`, "Error");
+
+      }
+
+    });
 
   }
 
