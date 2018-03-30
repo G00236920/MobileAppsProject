@@ -27,7 +27,6 @@ export class FirebaseServiceProvider {
 
   getUsers(login: string, password: string): any {
 
-
     let loginValue = this.afd.database.ref(`users/${login}`).once("value", snapshot => {
       this.currentUser = `${login}`;
 
@@ -90,6 +89,17 @@ export class FirebaseServiceProvider {
     let accounts = this.afd.list("users/" +this.currentUser +"/accounts").valueChanges();
 
     return accounts;
+
+  }
+
+  addAccount(newAccount: string, balance: string){
+
+    this.afd.object("users/" +this.currentUser +"/accounts/" +`${newAccount}`).update({
+
+      title: `${newAccount}`,
+      balance: `${balance}`
+    
+    });
 
   }
 

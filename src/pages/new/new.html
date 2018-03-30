@@ -7,5 +7,34 @@
 </ion-header>
 
 <ion-content padding>
+        <div class="new-box">
+          
+          <form (ngSubmit)="addAccount()" #registerForm="ngForm">
+            <ion-row>
+              <ion-col>
+                <ion-list inset>
+                  
+                  <ion-item>
+                    <ion-input type="text" placeholder="Account Name" [(ngModel)]="accountName" [ngModelOptions]="{standalone:true}" required ></ion-input>
+                  </ion-item>
+                  
+                  <ion-item>
+                    <!--[(ngModel)]="registerCredentials.password"-->
+                    <ion-input type="text" placeholder="Account Starting Balance" [(ngModel)]="balance" [ngModelOptions]="{standalone:true}" required></ion-input>
+                  </ion-item>
+                  
+                </ion-list>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col class="addAccount-col">
+                <button ion-button class="add-btn" full type="submit">Add Account</button>
+              </ion-col>
+            </ion-row>
+            
+          </form>
+      
+        </div>
 
 </ion-content>
