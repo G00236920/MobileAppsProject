@@ -19,16 +19,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FirebaseServiceProvider {
 
+  currentUser: string;
+
   constructor(public http: HttpModule, public afd: AngularFireDatabase, private alertCtrl: AlertController) {
     
   }
 
-  getUsers(login: string, password: string): Promise<any> {
+  getUsers(login: string, password: string): any {
+
 
     let loginValue = this.afd.database.ref(`users/${login}`).once("value", snapshot => {
-      
-       return snapshot;
+      this.currentUser = `${login}`;
 
+    }).then(snap =>{
+      this.currentUser = `${login}`;
+      return snap;
     });
 
     return loginValue;
@@ -57,6 +62,8 @@ export class FirebaseServiceProvider {
 
         this.popUp(`Welcome to your new account`, "Welcome");
 
+        this.currentUser = `${login}`;
+
         return snapshot;
 
       }
@@ -76,6 +83,14 @@ export class FirebaseServiceProvider {
     });
 
     alert.present();
+  }
+
+  getAccounts(): any {
+
+    let accounts = this.afd.list("users/" +this.currentUser +"/accounts").valueChanges();
+
+    return accounts;
+
   }
 
 }

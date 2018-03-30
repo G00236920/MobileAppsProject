@@ -6,8 +6,8 @@
 
 <ion-content padding>
     <ion-list>
-        <!--<ion-item *ngFor="let account of accounts | async">
+        <button ion-button *ngFor="let account of accounts | async" color="secondary" (click)="accountEdit(account.title)">
           {{account.title}}
-        </ion-item>-->
-      </ion-list>
+        </button>
+    </ion-list>
 </ion-content>
