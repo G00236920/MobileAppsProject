@@ -6,18 +6,18 @@ import { MyApp } from './app.component';
 import { NewPage } from '../pages/new/new';
 import { SendPage } from '../pages/send/send';
 import { AccountsPage } from '../pages/accounts/accounts';
+import { AccountDetailsPage } from '../pages/account-details/account-details';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { FormsModule } from '@angular/forms';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
-
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
+import { TitleProvider } from '../providers/title/title';
 
 
 const fbConfig = {
@@ -36,7 +36,8 @@ const fbConfig = {
     NewPage,
     SendPage,
     AccountsPage,
-    TabsPage
+    TabsPage,
+    AccountDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -53,15 +54,17 @@ const fbConfig = {
     NewPage,
     SendPage,
     AccountsPage,
-    TabsPage
+    TabsPage,
+    AccountDetailsPage
   ],
   providers: [
     HttpModule,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider,
     FirebaseServiceProvider,
+    AccountDetailsPage,
+    TitleProvider
   ]
 })
 export class AppModule {}

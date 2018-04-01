@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-
+import { AccountDetailsPage } from '../account-details/account-details'
+import { TitleProvider } from '../../providers/title/title'
 
 @Component({
   selector: 'page-accounts',
@@ -12,7 +13,7 @@ export class AccountsPage {
   accounts: any;
   currentAccount: any;
 
-  constructor(public navCtrl: NavController, public afd: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public afd: FirebaseServiceProvider, private titleName: TitleProvider) {
 
   }
 
@@ -24,7 +25,9 @@ export class AccountsPage {
 
   accountEdit(account: string){
 
-    console.log( account );
+    this.titleName.setAccount(account);
+    this.navCtrl.push( AccountDetailsPage );
+
   }
 
 }

@@ -116,4 +116,14 @@ export class FirebaseServiceProvider {
 
   }
 
+  getDetails(account: string): any {
+
+    console.log("users/" +this.currentUser +"/accounts/"+account+"/debited");
+
+    let items = this.afd.list("users/" +this.currentUser +"/accounts/"+account+"/debited").valueChanges();
+
+    return items;
+
+  }
+
 }
