@@ -9,6 +9,7 @@ import { AccountsPage } from '../pages/accounts/accounts';
 import { AccountDetailsPage } from '../pages/account-details/account-details';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { AddEntryPage } from '../pages/add-entry/add-entry';
 import { FormsModule } from '@angular/forms';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -37,7 +38,8 @@ const fbConfig = {
     SendPage,
     AccountsPage,
     TabsPage,
-    AccountDetailsPage
+    AccountDetailsPage,
+    AddEntryPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ const fbConfig = {
     SendPage,
     AccountsPage,
     TabsPage,
-    AccountDetailsPage
+    AccountDetailsPage,
+    AddEntryPage
   ],
   providers: [
     HttpModule,
