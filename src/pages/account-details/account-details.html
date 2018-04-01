@@ -1,14 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title><h2>{{title}}</h2>
-        <button ion-button color="secondary" (click)="swap()">
-          {{titleButton}}
-        </button>
+    <ion-title>{{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+    <button id="titleButton" ion-button color="secondary" (click)="swap()">
+        {{titleButton}}
+      </button>
 
   <div class="debit-box" *ngIf="showDebit">
     <ion-list >

@@ -1,15 +1,12 @@
 page-account-details {
 
+    #titleButton{
+        width: 100%;
+    }
+
     .button{
+        font-size: 10px;
         float: right;
-    }
-
-    ion-title .button{
-        float: right;
-    }
-
-    ion-title .h2{
-        float: left;
     }
 
 }
