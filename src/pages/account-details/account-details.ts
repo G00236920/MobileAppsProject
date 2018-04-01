@@ -24,7 +24,7 @@ export class AccountDetailsPage {
 
   showDebit: boolean = true;
   showCredit: boolean = false;
-  titleButton = "Show Credit";
+  titleButton = "Credit";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public titleName: TitleProvider, public afd: FirebaseServiceProvider) {
   
@@ -51,15 +51,15 @@ export class AccountDetailsPage {
     if(this.showDebit == true){
       this.showDebit = false;
       this.showCredit = true;
-      
-      this.titleButton = "Show Debit";
+
+      this.titleButton = "Debit";
 
     }
     else{
       this.showDebit = true;
       this.showCredit = false;
 
-      this.titleButton = "Show Credit";
+      this.titleButton = "Credit";
     }
     
   }
