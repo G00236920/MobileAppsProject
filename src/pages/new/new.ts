@@ -18,24 +18,32 @@ export class NewPage {
 
   addAccount(){
 
-    let accounts = this.afd.checkAccounts().then( listOfAccounts =>{
+    if(this.accountName == null){
 
-      if(listOfAccounts.child(this.accountName).val() == null){
-        
-        this.afd.addAccount(this.accountName, this.balance);
-  
-        this.navCtrl.push(TabsPage);
+      this.afd.popUp(`You must give the account a name`, "Error");
+      
+    }
+    else{
+
+      let accounts = this.afd.checkAccounts().then( listOfAccounts =>{
+
+        if(listOfAccounts.child(this.accountName).val() == null){
+          
+          this.afd.addAccount(this.accountName, this.balance);
     
-        this.afd.popUp(`Account Added`, "New Account");
+          this.navCtrl.push(TabsPage);
+      
+          this.afd.popUp(`Account Added`, "New Account");
 
-      }
-      else{
-        
-        this.afd.popUp(`Account Already Exists`, "Error");
+        }
+        else{
+          
+          this.afd.popUp(`Account Already Exists`, "Error");
 
-      }
+        }
 
-    });
+      });
+    }
 
   }
 
