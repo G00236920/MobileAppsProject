@@ -25,6 +25,7 @@ export class AccountDetailsPage {
   showDebit: boolean = true;
   showCredit: boolean = false;
   titleButton = "Show Credit";
+  state = "debited";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public titleName: TitleProvider, public afd: FirebaseServiceProvider) {
   
@@ -34,7 +35,7 @@ export class AccountDetailsPage {
 
   ngOnInit(){
     
-    this.itemsList = this.afd.getDetails(this.title);
+    this.itemsList = this.afd.getDetails(this.title, this.state);
     
   }
 
@@ -52,14 +53,21 @@ export class AccountDetailsPage {
       this.showDebit = false;
       this.showCredit = true;
 
+      this.state = "credited";
+
       this.titleButton = "Show Debit";
 
+      this.itemsList = this.afd.getDetails(this.title, this.state);
     }
     else{
       this.showDebit = true;
       this.showCredit = false;
 
+      this.state = "debited";
+
       this.titleButton = "Show Credit";
+
+      this.itemsList = this.afd.getDetails(this.title, this.state);
     }
     
   }
