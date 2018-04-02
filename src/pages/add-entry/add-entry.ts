@@ -19,6 +19,7 @@ export class AddEntryPage {
 
   accounts: any;
   currentAccount: any;
+  debitedAccount: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider) {
 
@@ -28,6 +29,31 @@ export class AddEntryPage {
   }
 
   addEntry(){
+
+    if(this.currentAccount == this.debitedAccount){
+
+      this.afd.popUp("You cannot Debit and Credit the same account", "error");
+
+    }
+    else if(this.debitedAccount.length == 0){
+
+      this.afd.popUp("You must choose an account to Debit", "error");
+
+    }
+    else{
+
+      this.creditAccount();
+      this.debitAccount();
+
+    }
+
+  }
+
+  debitAccount(){
+
+  }
+
+  creditAccount(){
 
   }
 
