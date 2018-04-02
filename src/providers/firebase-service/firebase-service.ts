@@ -41,6 +41,8 @@ export class FirebaseServiceProvider {
 
   addUser(login: string, password: string, company: string):Promise<any>{
 
+    login = login.toLowerCase();
+
     let status = this.afd.database.ref(`users/${login}`).once("value", snapshot => {
 
       if(snapshot.hasChild("password")){
@@ -86,15 +88,16 @@ export class FirebaseServiceProvider {
 
   getAccounts(): any {
 
-    let accounts = this.afd.list("users/" +this.currentUser +"/accounts").valueChanges();
+    let accounts = this.afd.list("users/" +this.currentUser.toLowerCase() +"/accounts").valueChanges();
 
     return accounts;
-
   }
 
-  addAccount(newAccount: string, balance: string){
+  addAccount(newAccount: string, balance: number){
 
-    this.afd.object("users/" +this.currentUser +"/accounts/" +`${newAccount}`).update({
+    newAccount = newAccount.toLowerCase();
+
+    this.afd.object("users/" +this.currentUser.toLowerCase() +"/accounts/" +`${newAccount}`).update({
 
       title: `${newAccount}`,
       balance: `${balance}`
@@ -105,7 +108,7 @@ export class FirebaseServiceProvider {
 
   checkAccounts(): Promise<any>{
 
-    let accounts = this.afd.database.ref("users/" +this.currentUser +"/accounts").once("value", snapshot => {
+    let accounts = this.afd.database.ref("users/" +this.currentUser.toLowerCase() +"/accounts").once("value", snapshot => {
 
     }).then(snap =>{
 
@@ -119,10 +122,18 @@ export class FirebaseServiceProvider {
   getDetails(account: string, state: string): any {
 
 
-    let items = this.afd.list("users/" +this.currentUser +"/accounts/"+account+"/"+state).valueChanges();
+    let items = this.afd.list("users/" +this.currentUser.toLowerCase() +"/accounts/"+account+"/"+state).valueChanges();
 
     return items;
 
+  }
+
+  credit(){
+
+  }
+
+  debit(){
+    
   }
 
 }

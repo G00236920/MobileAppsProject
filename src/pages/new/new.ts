@@ -9,8 +9,8 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class NewPage {
 
-  accountName: string;
-  balance: string;
+  accountName: string="";
+  balance: number;
 
   constructor(public navCtrl: NavController, public afd: FirebaseServiceProvider) {
 
@@ -18,10 +18,15 @@ export class NewPage {
 
   addAccount(){
 
-    if(this.accountName == null){
+    if(this.accountName.length == 0 || this.accountName == " "){
 
       this.afd.popUp(`You must give the account a name`, "Error");
       
+    }
+    else if(this.balance == null){
+
+      this.afd.popUp(`You must have a starting balance for an account, It can be set to 0`, "Error");
+
     }
     else{
 
