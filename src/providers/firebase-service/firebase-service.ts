@@ -121,19 +121,20 @@ export class FirebaseServiceProvider {
 
   getDetails(account: string, state: string): any {
 
-
     let items = this.afd.list("users/" +this.currentUser.toLowerCase() +"/accounts/"+account+"/"+state).valueChanges();
 
     return items;
 
   }
 
-  credit(){
+  credit(creditAccount: string, positive: number){
 
   }
 
-  debit(){
-    
+  debit(debitAccount: string, negative: number){
+
+    negative = 0 - negative;
+
   }
 
 }

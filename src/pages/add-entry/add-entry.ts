@@ -20,6 +20,7 @@ export class AddEntryPage {
   accounts: any;
   currentAccount: any;
   debitedAccount: string = "";
+  creditAmmount: number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider) {
 
@@ -51,9 +52,13 @@ export class AddEntryPage {
 
   debitAccount(){
 
+    this.afd.debit(this.debitedAccount, this.creditAmmount);
+
   }
 
   creditAccount(){
+
+    this.afd.credit(this.debitedAccount, this.creditAmmount);
 
   }
 
