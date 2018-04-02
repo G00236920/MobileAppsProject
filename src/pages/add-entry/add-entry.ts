@@ -22,13 +22,9 @@ export class AddEntryPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider) {
 
-    this.accounts = this.afd.getAccounts();
     this.currentAccount = this.titleName.getAccount();
+    this.accounts = this.afd.getAccounts();
 
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddEntryPage');
   }
 
   addEntry(){
