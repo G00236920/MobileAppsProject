@@ -89,7 +89,9 @@ export class LoginPage {
 
     }
     else {
+
       this.afd.popUp(`Passwords do not match`, "Try Again");
+      
     }
 
   }

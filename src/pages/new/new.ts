@@ -32,7 +32,7 @@ export class NewPage {
 
       let accounts = this.afd.checkAccounts().then( listOfAccounts =>{
 
-        if(listOfAccounts.child(this.accountName).val() == null){
+        if(listOfAccounts.child(this.accountName.toLowerCase()).val() == null){
           
           this.afd.addAccount(this.accountName, this.balance);
     
