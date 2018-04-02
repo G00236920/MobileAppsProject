@@ -127,13 +127,27 @@ export class FirebaseServiceProvider {
 
   }
 
-  credit(creditAccount: string, positive: number){
+  credit(creditAccount: string, positive: number, debitAccount: string, title: string){
+
+    let newItem = {
+      title: title,
+      amount: positive 
+    };
+
+    this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).key
 
   }
 
-  debit(debitAccount: string, negative: number){
+  debit(debitAccount: string, negative: number, creditAccount: string, title: string){
+
+    let newItem = {
+      title: title,
+      amount: negative
+    };
 
     negative = 0 - negative;
+
+    this.afd.list('/users/'+this.currentUser +"/accounts/" +debitAccount +"/debited").push(newItem).key
 
   }
 

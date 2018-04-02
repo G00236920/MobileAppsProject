@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TitleProvider } from '../../providers/title/title';
+import { AccountDetailsPage } from '../account-details/account-details';
 
 /**
  * Generated class for the AddEntryPage page.
@@ -20,7 +21,8 @@ export class AddEntryPage {
   accounts: any;
   currentAccount: any;
   debitedAccount: string = "";
-  creditAmmount: number = 0;
+  creditedAmount: number = 0;
+  entryDescription: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider) {
 
@@ -46,19 +48,21 @@ export class AddEntryPage {
       this.creditAccount();
       this.debitAccount();
 
+      this.navCtrl.push(AccountDetailsPage);
+
     }
 
   }
 
   debitAccount(){
 
-    this.afd.debit(this.debitedAccount, this.creditAmmount);
+    this.afd.debit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription);
 
   }
 
   creditAccount(){
 
-    this.afd.credit(this.debitedAccount, this.creditAmmount);
+    this.afd.credit(this.currentAccount, this.creditedAmount, this.debitedAccount, this.entryDescription);
 
   }
 
