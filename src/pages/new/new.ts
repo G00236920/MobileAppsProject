@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TabsPage } from '../tabs/tabs';
+import { AccountDetailsPage } from '../account-details/account-details';
+import { AccountDetailsPage } from '../account-details/account-details';
+import { AccountDetailsPage } from '../account-details/account-details';
 
 @Component({
   selector: 'page-new',
@@ -36,7 +39,8 @@ export class NewPage {
           
           this.afd.addAccount(this.accountName, this.balance);
 
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.setRoot(TabsPage);
+          this.navCtrl.popToRoot();
       
           this.afd.popUp(`Account Added`, "New Account");
 
