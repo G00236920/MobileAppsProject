@@ -100,7 +100,7 @@ export class FirebaseServiceProvider {
     this.afd.object("users/" +this.currentUser.toLowerCase() +"/accounts/" +`${newAccount}`).update({
 
       title: `${newAccount}`,
-      balance: `${balance}`
+      balance: +balance
     
     });
 
@@ -127,30 +127,7 @@ export class FirebaseServiceProvider {
 
   }
 
-  credit(creditAccount: string, positive: number, debitAccount: string, title: string){
-
-    let newItem = {
-      title: title,
-      amount: positive 
-    };
-
-    this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).key;
-
-    this.afd.database.ref("users/"+this.currentUser+"/accounts/"+creditAccount).once("value", snapshot => {
-
-      let total = snapshot.child("balance").val() + positive;
-
-      this.afd.object("users/"+this.currentUser+"/accounts/"+creditAccount).update({
-        
-        balance: total
-
-      });
-
-    });
-
-  }
-
-  debit(debitAccount: string, negative: number, creditAccount: string, title: string){
+  edit(debitAccount: string, negative: number, creditAccount: string, title: string){
 
     let newItem = {
       title: title,
@@ -163,7 +140,7 @@ export class FirebaseServiceProvider {
    
     this.afd.database.ref("users/"+this.currentUser+"/accounts/"+debitAccount).once("value", snapshot => {
 
-      let total = snapshot.child("balance").val() + negative;
+      let total = +snapshot.child("balance").val() + negative;
 
       this.afd.object("users/"+this.currentUser+"/accounts/"+debitAccount).update({
 
