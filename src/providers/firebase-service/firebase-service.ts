@@ -144,7 +144,7 @@ export class FirebaseServiceProvider {
 
       }
 
-      let total = +snapshot.child("balance").val() + amount;
+      let total:number = +snapshot.child("balance").val() + amount;
 
       this.afd.object("users/"+this.currentUser+"/accounts/"+debitAccount).update({
 
