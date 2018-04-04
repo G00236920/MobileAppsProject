@@ -135,24 +135,6 @@ export class FirebaseServiceProvider {
     };
 
     this.afd.list('/users/'+this.currentUser +"/accounts/" +debitAccount +"/"+state).push(newItem).key;
-   
-    this.afd.database.ref("users/"+this.currentUser+"/accounts/"+debitAccount).once("value", snapshot => {
-
-      if(state =="debited"){
-
-        amount = 0 - amount;
-
-      }
-
-      let total:number = +snapshot.child("balance").val() + amount;
-
-      this.afd.object("users/"+this.currentUser+"/accounts/"+debitAccount).update({
-
-        balance: +total
-
-      });
-
-    });
 
   }
 
