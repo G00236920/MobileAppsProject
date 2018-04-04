@@ -148,7 +148,7 @@ export class FirebaseServiceProvider {
 
       this.afd.object("users/"+this.currentUser+"/accounts/"+debitAccount).update({
 
-        balance: total
+        balance: +total
 
       });
 
