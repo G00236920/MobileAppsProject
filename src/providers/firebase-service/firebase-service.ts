@@ -134,7 +134,19 @@ export class FirebaseServiceProvider {
       amount: positive 
     };
 
-    this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).key
+    this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).key;
+
+    this.afd.database.ref("users/"+this.currentUser+"/accounts/"+creditAccount).once("value", snapshot => {
+
+      let total = snapshot.child("balance").val() + positive;
+
+      this.afd.object("users/"+this.currentUser+"/accounts/"+creditAccount).update({
+        
+        balance: total
+
+      });
+
+    });
 
   }
 
@@ -147,7 +159,19 @@ export class FirebaseServiceProvider {
 
     negative = 0 - negative;
 
-    this.afd.list('/users/'+this.currentUser +"/accounts/" +debitAccount +"/debited").push(newItem).key
+    this.afd.list('/users/'+this.currentUser +"/accounts/" +debitAccount +"/debited").push(newItem).key;
+   
+    this.afd.database.ref("users/"+this.currentUser+"/accounts/"+debitAccount).once("value", snapshot => {
+
+      let total = snapshot.child("balance").val() + negative;
+
+      this.afd.object("users/"+this.currentUser+"/accounts/"+debitAccount).update({
+
+        balance: total
+
+      });
+
+    });
 
   }
 
