@@ -26,10 +26,19 @@ export class AccountDetailsPage {
   showCredit: boolean = false;
   titleButton = "Show Credit";
   state = "debited";
+  bal: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public titleName: TitleProvider, public afd: FirebaseServiceProvider) {
   
     this.title = this.titleName.getAccount();
+
+    this.afd.getBalance(this.title).then(snap=>{
+
+      this.bal = snap.child("balance").val();
+
+      return this.bal;
+
+    });
  
   }
 
@@ -45,6 +54,7 @@ export class AccountDetailsPage {
 
   creditAccount(){
    
+    this.navCtrl.popAll();
     this.navCtrl.push(AddEntryPage);
 
   }

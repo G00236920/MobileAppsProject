@@ -8,6 +8,7 @@ import { LoginPage } from '../../pages/login/login'
 import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/map';
+import { Title } from '@angular/platform-browser';
 
 /*
   Generated class for the FirebaseServiceProvider provider.
@@ -20,6 +21,8 @@ import 'rxjs/add/operator/map';
 export class FirebaseServiceProvider {
 
   currentUser: string;
+  balance: number = 0;
+  keyValue: any;
 
   constructor(public http: HttpModule, public afd: AngularFireDatabase, private alertCtrl: AlertController) {
     
@@ -28,6 +31,7 @@ export class FirebaseServiceProvider {
   getUsers(login: string, password: string): any {
 
     let loginValue = this.afd.database.ref(`users/${login}`).once("value", snapshot => {
+      
       this.currentUser = `${login}`;
 
     }).then(snap =>{
@@ -127,15 +131,76 @@ export class FirebaseServiceProvider {
 
   }
 
-  edit(debitAccount: string, amount: number, creditAccount: string, title: string, state: string){
+  credit(debitAccount: string, amount: number, creditAccount: string, title: string){
 
     let newItem = {
       title: title,
-      amount: amount
+      amount: amount,
+      debitedTo: debitAccount
     };
 
-    this.afd.list('/users/'+this.currentUser +"/accounts/" +debitAccount +"/"+state).push(newItem).key;
+    var newRef = this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).then(snap =>{
+      
+      this.debit(debitAccount,amount,creditAccount, title, snap.key);
+
+      this.getBalance(creditAccount).then(snap=>{
+
+        var currentBalance: number = parseFloat(snap.child("balance").val());
+
+        var newBalance = currentBalance +(+amount);
+        
+        this.afd.object('/users/'+this.currentUser +"/accounts/" +creditAccount).update({
+          
+          balance: newBalance
+
+        });
+  
+      });
+
+    });
+
+    return this.keyValue;
 
   }
+
+  debit(debitAccount: string, amount: number, creditAccount: string, title: string, key: string){
+
+    let newItem = {
+      title: title,
+      amount: amount,
+      creditedFrom: creditAccount
+    };
+
+    amount = 0-amount;
+
+    this.afd.object('/users/'+this.currentUser +"/accounts/" +debitAccount +"/debited/"+key).update(newItem);
+
+    this.getBalance(creditAccount).then(snap=>{
+
+      var currentBalance: number = parseFloat(snap.child("balance").val());
+
+      var newBalance = -currentBalance +(+amount);
+      
+      this.afd.object('/users/'+this.currentUser +"/accounts/" +debitAccount).update({
+        
+        balance: newBalance
+
+      });
+
+    });
+    
+  }
+
+  getBalance(title: string):Promise<any>{
+
+    let account = this.afd.database.ref("users/" +this.currentUser.toLowerCase() +"/accounts/"+title).once("value", snapshot => {
+
+    }).then(snap =>{
+
+      return snap;
+    });
+
+    return account;
+  }   
 
 }

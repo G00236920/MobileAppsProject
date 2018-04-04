@@ -35,7 +35,8 @@ export class NewPage {
         if(listOfAccounts.child(this.accountName.toLowerCase()).val() == null){
           
           this.afd.addAccount(this.accountName, this.balance);
-    
+
+          this.navCtrl.popAll();
           this.navCtrl.push(TabsPage);
       
           this.afd.popUp(`Account Added`, "New Account");

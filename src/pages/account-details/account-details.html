@@ -7,6 +7,18 @@
 
 <ion-content padding>
 
+
+    <div id="bal-box">
+        <ion-col>
+          <h3 >Balance: € {{bal}}</h3>
+        </ion-col>
+        <ion-col>
+            <button ion-button color="secondary" (click)="creditAccount()" *ngIf="showCredit">
+                Credit This Account
+            </button>
+        </ion-col>
+    </div>
+
     <button id="titleButton" ion-button color="secondary" (click)="swap()">
         {{titleButton}}
       </button>
@@ -22,13 +34,8 @@
              Show Document
             </button>
           </ion-col>
-          
         </ion-item>
     </ion-list>
   </div>
-
-  <button ion-button color="secondary" (click)="creditAccount()" *ngIf="showCredit">
-    Credit This Account
-  </button>
 
 </ion-content>

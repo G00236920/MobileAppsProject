@@ -55,6 +55,7 @@ export class LoginPage {
 
         if (this.userPassword.valueOf() == loginData.child("password").val()) {
 
+          this.navCtrl.popAll();
           this.navCtrl.push(TabsPage);
 
         }
@@ -81,6 +82,7 @@ export class LoginPage {
 
           if(snapshot.child("password").val() == null){
             
+            this.navCtrl.popAll();
             this.navCtrl.push(TabsPage);
 
           }

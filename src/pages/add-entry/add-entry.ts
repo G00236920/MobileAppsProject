@@ -45,24 +45,12 @@ export class AddEntryPage {
     }
     else{
 
-      this.creditAccount();
-      this.debitAccount();
+      this.afd.credit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription);
 
+      this.navCtrl.popAll();
       this.navCtrl.push(AccountDetailsPage);
 
     }
-
-  }
-
-  debitAccount(){
-
-    this.afd.edit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription, "debited");
-
-  }
-
-  creditAccount(){
-
-    this.afd.edit(this.currentAccount, this.creditedAmount, this.debitedAccount, this.entryDescription, "credited");
 
   }
 
