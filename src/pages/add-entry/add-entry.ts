@@ -62,7 +62,7 @@ export class AddEntryPage {
 
   creditAccount(){
 
-    this.afd.edit(this.currentAccount,(0 - this.creditedAmount), this.debitedAccount, this.entryDescription, "credited");
+    this.afd.edit(this.currentAccount, this.creditedAmount, this.debitedAccount, this.entryDescription, "credited");
 
   }
 
