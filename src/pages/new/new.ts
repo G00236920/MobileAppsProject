@@ -36,7 +36,6 @@ export class NewPage {
           
           this.afd.addAccount(this.accountName, this.balance);
 
-          this.navCtrl.popAll();
           this.navCtrl.push(TabsPage);
       
           this.afd.popUp(`Account Added`, "New Account");

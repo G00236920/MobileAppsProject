@@ -55,7 +55,6 @@ export class LoginPage {
 
         if (this.userPassword.valueOf() == loginData.child("password").val()) {
 
-          this.navCtrl.popAll();
           this.navCtrl.push(TabsPage);
 
         }
@@ -81,8 +80,7 @@ export class LoginPage {
       this.afd.addUser(this.newUser, this.password1, this.companyName).then( snapshot => {
 
           if(snapshot.child("password").val() == null){
-            
-            this.navCtrl.popAll();
+
             this.navCtrl.push(TabsPage);
 
           }

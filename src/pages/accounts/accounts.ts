@@ -26,7 +26,7 @@ export class AccountsPage {
   accountEdit(account: string){
 
     this.titleName.setAccount(account);
-    this.navCtrl.popAll();
+
     this.navCtrl.push( AccountDetailsPage );
 
   }
