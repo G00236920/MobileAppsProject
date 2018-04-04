@@ -45,6 +45,14 @@ export class AccountDetailsPage {
   ngOnInit(){
     
     this.itemsList = this.afd.getDetails(this.title, this.state);
+
+    this.afd.getBalance(this.title).then(snap=>{
+
+      this.bal = snap.child("balance").val();
+
+      return this.bal;
+
+    });
     
   }
 
@@ -54,6 +62,7 @@ export class AccountDetailsPage {
 
   creditAccount(){
    
+    this.navCtrl.popAll();
     this.navCtrl.push(AddEntryPage);
 
   }

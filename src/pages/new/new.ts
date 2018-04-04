@@ -3,8 +3,7 @@ import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TabsPage } from '../tabs/tabs';
 import { AccountDetailsPage } from '../account-details/account-details';
-import { AccountDetailsPage } from '../account-details/account-details';
-import { AccountDetailsPage } from '../account-details/account-details';
+
 
 @Component({
   selector: 'page-new',
