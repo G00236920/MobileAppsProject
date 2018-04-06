@@ -42,8 +42,8 @@ export class AccountDetailsPage {
  
   }
 
-  ngOnInit(){
-    
+  ionViewDidLoad() {
+
     this.itemsList = this.afd.getDetails(this.title, this.state);
 
     this.afd.getBalance(this.title).then(snap=>{
@@ -62,6 +62,7 @@ export class AccountDetailsPage {
 
   creditAccount(){
 
+    this.navCtrl.pop(AccountDetailsPage);
     this.navCtrl.push(AddEntryPage);
 
   }

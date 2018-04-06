@@ -55,7 +55,7 @@ export class LoginPage {
 
         if (this.userPassword.valueOf() == loginData.child("password").val()) {
 
-
+          this.navCtrl.setRoot(TabsPage);
           this.navCtrl.push(TabsPage);
 
         }

@@ -27,6 +27,7 @@ export class AccountsPage {
 
     this.titleName.setAccount(account);
 
+    
     this.navCtrl.push( AccountDetailsPage );
 
   }
