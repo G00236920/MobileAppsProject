@@ -131,17 +131,18 @@ export class FirebaseServiceProvider {
 
   }
 
-  credit(debitAccount: string, amount: number, creditAccount: string, title: string){
+  credit(debitAccount: string, amount: number, creditAccount: string, title: string, image: string){
 
     let newItem = {
       title: title,
       amount: amount,
-      debitedTo: debitAccount
+      debitedTo: debitAccount,
+      image: image
     };
 
     var newRef = this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).then(snap =>{
       
-      this.debit(debitAccount,amount,creditAccount, title, snap.key);
+      this.debit(debitAccount,amount,creditAccount, title, snap.key, image);
 
       this.getBalance(creditAccount).then(snap=>{
 
@@ -163,12 +164,13 @@ export class FirebaseServiceProvider {
 
   }
 
-  debit(debitAccount: string, amount: number, creditAccount: string, title: string, key: string){
+  debit(debitAccount: string, amount: number, creditAccount: string, title: string, key: string, image: string){
 
     let newItem = {
       title: title,
       amount: amount,
-      creditedFrom: creditAccount
+      creditedFrom: creditAccount,
+      image: image
     };
 
     amount = 0-amount;

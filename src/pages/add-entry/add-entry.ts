@@ -24,6 +24,7 @@ export class AddEntryPage {
   debitedAccount: string = "";
   creditedAmount: number = 0;
   entryDescription: string;
+  base64Image: string;
 
   options: CameraOptions = {
     quality: 100,
@@ -53,32 +54,29 @@ export class AddEntryPage {
     }
     else{
 
-      this.afd.credit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription); 
+      this.afd.credit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription, this.getImage()); 
 
         this.navCtrl.push(AccountDetailsPage);
     
-
     }
 
   }
 
   takePhoto(){
 
-    console.log("Step 1");
-    this.camera.getPicture(this.options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log("Step 2");
-      
+    let image = this.camera.getPicture(this.options).then((imageData) => {
+
+      this.base64Image = 'data:image/jpeg;base64,' + imageData;
+
      }, (err) => {
-      console.log(err);
-      // Handle error
+
      });
 
-     console.log("Step 3");
-    
+  }
 
+  getImage(): string {
+
+    return this.base64Image;
   }
 
 }
