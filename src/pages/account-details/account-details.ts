@@ -61,8 +61,7 @@ export class AccountDetailsPage {
   }
 
   creditAccount(){
-
-    this.navCtrl.pop(AccountDetailsPage);
+    
     this.navCtrl.push(AddEntryPage);
 
   }

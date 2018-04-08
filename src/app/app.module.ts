@@ -19,6 +19,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { TitleProvider } from '../providers/title/title';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 const fbConfig = {
@@ -67,7 +68,8 @@ const fbConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider,
     AccountDetailsPage,
-    TitleProvider
+    TitleProvider,
+    Camera
   ]
 })
 export class AppModule {}

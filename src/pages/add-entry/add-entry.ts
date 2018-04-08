@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TitleProvider } from '../../providers/title/title';
 import { AccountDetailsPage } from '../account-details/account-details';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the AddEntryPage page.
@@ -24,7 +25,14 @@ export class AddEntryPage {
   creditedAmount: number = 0;
   entryDescription: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider) {
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afd: FirebaseServiceProvider, public titleName: TitleProvider, private camera: Camera) {
 
     this.currentAccount = this.titleName.getAccount();
     this.accounts = this.afd.getAccounts();
@@ -51,6 +59,25 @@ export class AddEntryPage {
     
 
     }
+
+  }
+
+  takePhoto(){
+
+    console.log("Step 1");
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log("Step 2");
+      
+     }, (err) => {
+      console.log(err);
+      // Handle error
+     });
+
+     console.log("Step 3");
+    
 
   }
 

@@ -15,9 +15,10 @@
 
 <ion-content class="entry-content">
           
-        <button ion-button class="photo-btn"click="openCamera()">Take Photo</button>
+        <button ion-button class="photo-btn" (click)="takePhoto()">Take Photo</button>
           <form (ngSubmit)="addEntry()" #registerForm="ngForm">
                 <ion-list>
+
                       <ion-item>
                         <ion-input type="text" placeholder="Entry Description" [(ngModel)]="entryDescription" [ngModelOptions]="{standalone:true}" required ></ion-input>
                       </ion-item>
@@ -31,6 +32,7 @@
                             <ion-option *ngFor="let account of accounts | async">{{account.title}}</ion-option>
                         </ion-select>
                       </ion-item>
+                      
                 </ion-list>
                 <button ion-button class="submit-btn" full type="submit">Submit</button>
             
