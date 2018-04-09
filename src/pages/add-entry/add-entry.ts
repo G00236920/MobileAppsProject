@@ -47,7 +47,7 @@ export class AddEntryPage {
       this.afd.popUp("You cannot Debit and Credit the same account", "error");
 
     }
-    else if (this.getimage() == undefined){
+    else if (this.getImage() == undefined){
 
       this.afd.popUp("You Must include an image of the Bill or Invoice", "error");
 
