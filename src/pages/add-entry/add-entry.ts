@@ -79,7 +79,7 @@ export class AddEntryPage {
 
   }
 
-  getImage(){
+  getImage():string {
 
     return this.base64Image;
   }
