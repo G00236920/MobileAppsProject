@@ -15,6 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ShowPhotoPage {
 
+  imageName: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -23,6 +25,14 @@ export class ShowPhotoPage {
   }
 
   showPhoto(){
+    
+    this.imageName = "https://wiesmann.codiferes.net/share/bitmaps/test_pattern.svg";
+
+  }
+
+  goBack(){
+
+    this.navCtrl.remove(2);
     
   }
 

@@ -8,17 +8,18 @@
 
   <ion-navbar>
     <ion-title>Document View</ion-title>
-
-
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="photo-content">
 
     <div>
-        <img src="showPhoto()" alt="Document Could not be shown" />
+        <img src="{{imageName}}" alt="Document Could not be shown" />
+        <ion-avatar item-left><img [src]="imageName"></ion-avatar>
+        <br/>
+        <button ion-button color="secondary" (click)="goBack()">Close Image</button>
     </div>
 
 </ion-content>

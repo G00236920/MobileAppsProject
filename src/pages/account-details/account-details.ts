@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TitleProvider } from '../../providers/title/title';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { AddEntryPage } from '../add-entry/add-entry';
+import { ShowPhotoPage } from '../show-photo/show-photo';
 
 /**
  * Generated class for the AccountDetailsPage page.
@@ -57,6 +58,8 @@ export class AccountDetailsPage {
   }
 
   showDocument(){
+
+    this.navCtrl.push(ShowPhotoPage);
     
   }
 
