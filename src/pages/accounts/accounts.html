@@ -6,6 +6,7 @@
 
 <ion-content padding>
     <ion-list>
+      <!--Show a list of all the accounts for the current user-->
         <button ion-button *ngFor="let account of accounts | async" color="secondary" (click)="accountEdit(account.title)">
           {{account.title}}
         </button>

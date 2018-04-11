@@ -15,21 +15,27 @@
 
 <ion-content class="entry-content">
           
+        <!--Button used to take a photo of documents-->
         <button ion-button class="photo-btn" (click)="takePhoto()">Take Photo</button>
 
+        <!--Box to show the image after it is taken-->
         <img src="{{base64Image}}" class="center"/>
 
+        <!--Form that allows the user to add a new entry to an account-->
           <form (ngSubmit)="addEntry()" #registerForm="ngForm">
                 <ion-list>
 
+                      <!--Description of the entry-->
                       <ion-item>
                         <ion-input type="text" placeholder="Entry Description" [(ngModel)]="entryDescription" [ngModelOptions]="{standalone:true}" required ></ion-input>
                       </ion-item>
                       
+                      <!--Ammount to be credited to the current account-->
                       <ion-item>
                         <ion-input type="number" placeholder="Credited Amount" [(ngModel)]="creditedAmount" [ngModelOptions]="{standalone:true}" required></ion-input>
                       </ion-item>
                       
+                      <!--Drop down box to allow the user to select which account should be debited-->
                       <ion-item>
                         <ion-select  multiple="false" placeholder="Select an account to Debit"  [(ngModel)]="debitedAccount" name="debitedAccount">
                             <ion-option *ngFor="let account of accounts | async">{{account.title}}</ion-option>
@@ -37,6 +43,7 @@
                       </ion-item>
                       
                 </ion-list>
+                <!--Button for the user to submit the form which will add the entry to firebase-->
                 <button ion-button class="submit-btn" full type="submit">Submit</button>
             
           </form>

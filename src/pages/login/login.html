@@ -7,21 +7,22 @@
 
 </ion-header>
 
-
+<!--One of the two boxes to be shown, one for a user to login, other for the user to create an account-->
 <ion-content class="login-content" padding>
   <div class="login-box" *ngIf="showLogin">
     
+    <!--Form for the user to enter login data, which can then be checked in firebase-->
     <form (ngSubmit)="VerifyUser()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
-            
+            <!--Box for the user to add their username-->
             <ion-item>
               <ion-input type="text" placeholder="Username" [(ngModel)]="userLogin" [ngModelOptions]="{standalone:true}" required ></ion-input>
             </ion-item>
             
             <ion-item>
-              <!--[(ngModel)]="registerCredentials.password"-->
+              <!--Box for the user to enter their password-->
               <ion-input type="password" placeholder="Password" [(ngModel)]="userPassword" [ngModelOptions]="{standalone:true}" required></ion-input>
             </ion-item>
             
@@ -30,6 +31,7 @@
       </ion-row>
       
       <ion-row>
+        <!--Button only shown when an existing user is trying to sign in-->
         <ion-col class="signup-col">
           <button ion-button class="submit-btn" full type="submit">Login</button>
         </ion-col>
@@ -37,6 +39,7 @@
       
     </form>
     
+      <!--Button to allow the user to create a new account-->
       <ion-row>
           <ion-col class="reg-col">
             <button ion-button class="reg-btn" full type="submit" (click)='openReg();'>Regsiter New Account</button>
@@ -44,26 +47,27 @@
       </ion-row>
 
   </div>
-  
+  <!--Box to allow the user to register for a new account-->
   <div class="reg-box" *ngIf="showReg">
     <form (ngSubmit)="createUser()" #registerForm="ngForm">
         <ion-row>
           <ion-col>
             <ion-list inset>
               
+              <!--Allows the user to enter a username-->
               <ion-item>
                 <ion-input type="text" placeholder="Username" [(ngModel)]="newUser" [ngModelOptions]="{standalone:true}" required></ion-input>
               </ion-item>
               
+              <!--Allows the user to enter a password-->
               <ion-item>
-                <!--[(ngModel)]="registerCredentials.password"-->
                 <ion-input type="password" placeholder="Password" [(ngModel)]="password1" [ngModelOptions]="{standalone:true}"  required></ion-input>
               </ion-item>
-
+              <!--Allows a user to re-enter the password to confirm it is correct-->
               <ion-item>
                   <ion-input type="password" placeholder="Confirm Password" [(ngModel)]="password2" [ngModelOptions]="{standalone:true}" required></ion-input>
               </ion-item>
-
+              <!--User can enter the name of a company, optional field and is not used yet-->
               <ion-item>
                   <ion-input type="text" placeholder="Company Name" [(ngModel)]="companyName" [ngModelOptions]="{standalone:true}"  required></ion-input>
               </ion-item>
@@ -71,7 +75,7 @@
             </ion-list>
           </ion-col>
         </ion-row>
-
+        <!--Button to allow the user to create the account, once the other fields are complete-->
         <ion-row>
           <ion-col class="create-col">
             <button ion-button class="create-btn" full type="submit">Create</button>
@@ -80,6 +84,7 @@
 
       </form>
 
+      <!--Buttonn to show the login box again-->
       <ion-row>
           <ion-col class="back-col">
             <button ion-button class="back-btn" full type="submit" (click)='goBack();'>Back</button>

@@ -7,28 +7,31 @@
 
 <ion-content padding>
 
-
+<!--Area to how the balance information at the top of the screen-->
     <div id="bal-box">
         <ion-col>
           <h3 >Balance: € {{bal}}</h3>
         </ion-col>
         <ion-col>
+          <!--Button to allow user to credit account-->
             <button ion-button color="secondary" (click)="creditAccount()" *ngIf="showCredit">
                 Credit This Account
             </button>
         </ion-col>
     </div>
 
+    <!--Button that allows the user to show the credits or debits on the page-->
     <button id="titleButton" ion-button color="secondary" (click)="swap()">
         {{titleButton}}
       </button>
 
+  <!--Div that lists the debits or credit of the current account being used-->
   <div class="debit-box" >
     <ion-list >
 
       <ion-item *ngFor="let item of itemsList | async" >
-          <ion-col>{{item.title}}</ion-col>
-          <ion-col>{{item.amount}}</ion-col>
+          <ion-col>{{item.title}}</ion-col><!--The Description of the item-->
+          <ion-col>{{item.amount}}</ion-col><!--The value, either debited or credited-->
           <ion-col>
             <button ion-button color="secondary" (click)="showDocument(item.image)">
              Show Document
