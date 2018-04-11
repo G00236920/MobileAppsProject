@@ -60,8 +60,10 @@ export class AddEntryPage {
     else{
 
       this.afd.credit(this.debitedAccount, this.creditedAmount, this.currentAccount, this.entryDescription, this.getImage()); 
-
-        this.navCtrl.push(AccountDetailsPage);
+        
+        this.navCtrl.popToRoot().then( value =>{
+          this.navCtrl.push(AccountDetailsPage);
+        });
     
     }
 
