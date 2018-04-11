@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ImageServiceProvider } from  '../../providers/image-service/image-service';
 
 /**
  * Generated class for the ShowPhotoPage page.
@@ -17,17 +18,14 @@ export class ShowPhotoPage {
 
   imageName: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public CurrentImage: ImageServiceProvider) {
+
+    this.imageName = "https://wiesmann.codiferes.net/share/bitmaps/test_pattern.svg";
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShowPhotoPage');
-  }
-
-  showPhoto(){
-    
-    this.imageName = "https://wiesmann.codiferes.net/share/bitmaps/test_pattern.svg";
-
   }
 
   goBack(){

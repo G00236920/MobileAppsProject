@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { TitleProvider } from '../providers/title/title';
 import { Camera } from '@ionic-native/camera';
+import { ImageServiceProvider } from '../providers/image-service/image-service';
 
 
 const fbConfig = {
@@ -62,7 +63,7 @@ const fbConfig = {
     TabsPage,
     AccountDetailsPage,
     AddEntryPage,
-    ShowPhotoPage
+    ShowPhotoPage,
   ],
   providers: [
     HttpModule,
@@ -72,7 +73,8 @@ const fbConfig = {
     FirebaseServiceProvider,
     AccountDetailsPage,
     TitleProvider,
-    Camera
+    Camera,
+    ImageServiceProvider
   ]
 })
 export class AppModule {}

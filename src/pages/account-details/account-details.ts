@@ -4,6 +4,7 @@ import { TitleProvider } from '../../providers/title/title';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { AddEntryPage } from '../add-entry/add-entry';
 import { ShowPhotoPage } from '../show-photo/show-photo';
+import { ImageServiceProvider } from  '../../providers/image-service/image-service';
 
 /**
  * Generated class for the AccountDetailsPage page.
@@ -29,7 +30,7 @@ export class AccountDetailsPage {
   state = "debited";
   bal: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public titleName: TitleProvider, public afd: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public titleName: TitleProvider, public afd: FirebaseServiceProvider, public CurrentImage: ImageServiceProvider) {
   
     this.title = this.titleName.getAccount();
 
