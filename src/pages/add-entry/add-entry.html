@@ -16,6 +16,9 @@
 <ion-content class="entry-content">
           
         <button ion-button class="photo-btn" (click)="takePhoto()">Take Photo</button>
+
+        <img src="{{base64Image}}" class="center"/>
+
           <form (ngSubmit)="addEntry()" #registerForm="ngForm">
                 <ion-list>
 
