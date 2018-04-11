@@ -67,10 +67,10 @@ export class AccountDetailsPage {
 
   creditAccount(){
     
-    this.navCtrl.pop().then(value => {
+    this.navCtrl.popToRoot().then(value => {
 
       this.navCtrl.push(AddEntryPage);
-      
+
     });
 
   }
