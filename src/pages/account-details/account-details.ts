@@ -58,8 +58,9 @@ export class AccountDetailsPage {
     
   }
 
-  showDocument(){
+  showDocument(image: any){
 
+    this.CurrentImage.setPhoto(image);
     this.navCtrl.push(ShowPhotoPage);
     
   }

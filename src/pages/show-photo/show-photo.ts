@@ -20,7 +20,7 @@ export class ShowPhotoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public CurrentImage: ImageServiceProvider) {
 
-    this.imageName = "https://wiesmann.codiferes.net/share/bitmaps/test_pattern.svg";
+    this.imageName = this.CurrentImage.getPhoto();
 
   }
 
