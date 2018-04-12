@@ -20,11 +20,14 @@ import { TabsPage } from '../tabs/tabs';
 
 export class LoginPage {
 
+  //for collecting the users in the firebase db
   users: AngularFireList<any>;
 
+  //for switching panel types
   showLogin = true;
   showReg = false;
 
+  //variables for login and registration
   private userLogin: string;
   private userPassword: string;
   private password1: string;
@@ -49,18 +52,23 @@ export class LoginPage {
   VerifyUser() {
 
 
+    //if the user name and the password fields are not blank
     if (this.userLogin != null && this.userPassword != null) {
 
+      //connect to firebase, then return the result
       let test = this.afd.getUsers(this.userLogin, this.userPassword).then(loginData => {
 
+        //if the password matches the user password, 
         if (this.userPassword.valueOf() == loginData.child("password").val()) {
 
+          //navigate to the next page
           this.navCtrl.setRoot(TabsPage);
           this.navCtrl.push(TabsPage);
 
         }
         else {
 
+          //show a pop up if the password or username are incorrect
           this.afd.popUp(`Username or Password is incorrect`, "Try Again");
 
         }
@@ -73,18 +81,26 @@ export class LoginPage {
 
   createUser() {
 
+    //if the password has less than characters
     if(this.password2.length < 8){
+
+      //show a pop up warning the user to enter more than 8 chars
       this.afd.popUp(`Passwords must be 8 or more characters`, "Try Again");
+
     }
+
+    //if the two password fields match and are not blank
     else if((this.password1 == this.password2) && this.newUser != null && this.password1 != null){
 
+      //connect to the database, return a snapshot of the data 
       this.afd.addUser(this.newUser, this.password1, this.companyName).then( snapshot => {
 
+          //if the user data contains a password , proving that the user exists 
           if(snapshot.child("password").val() == null){
             
-            
-          this.navCtrl.setRoot(TabsPage);
-          this.navCtrl.popToRoot();
+            //navigate to the tabspage
+            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.popToRoot();
 
           }
 
@@ -93,13 +109,16 @@ export class LoginPage {
     }
     else {
 
+      //show popup that the passwords are different
       this.afd.popUp(`Passwords do not match`, "Try Again");
       
     }
-
+  
   }
 
   goBack() {
+
+    //hide the create user panel
     this.showLogin = true;
     this.showReg = false;
   }

@@ -20,6 +20,7 @@ export class ShowPhotoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public CurrentImage: ImageServiceProvider) {
 
+    //collect the name of the image from the imagename provider
     this.imageName = this.CurrentImage.getPhoto();
 
   }
@@ -30,6 +31,7 @@ export class ShowPhotoPage {
 
   goBack(){
 
+    //pop the last two navs off the stack
     this.navCtrl.remove(2);
     
   }

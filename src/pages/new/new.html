@@ -9,15 +9,18 @@
 <ion-content padding>
         <div class="new-box">
           
+          <!-- form to allow the user to add accounts to their table -->
           <form (ngSubmit)="addAccount()" #registerForm="ngForm">
             <ion-row>
               <ion-col>
                 <ion-list inset>
                   
+                  <!-- input the name of the account -->
                   <ion-item>
                     <ion-input type="text" placeholder="Account Name" [(ngModel)]="accountName" [ngModelOptions]="{standalone:true}" required ></ion-input>
                   </ion-item>
                   
+                  <!-- input for the starting balance of the new account -->
                   <ion-item> 
                     <ion-input type="number" placeholder="Account Starting Balance" [(ngModel)]="balance" [ngModelOptions]="{standalone:true}" required></ion-input>
                   </ion-item>
@@ -26,6 +29,7 @@
               </ion-col>
             </ion-row>
             
+            <!-- button to accept the new account and post to fiewbase -->
             <ion-row>
               <ion-col class="addAccount-col">
                 <button ion-button class="add-btn" full type="submit">Add Account</button>
