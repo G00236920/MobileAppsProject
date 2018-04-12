@@ -19,12 +19,14 @@ export class TitleProvider {
   
   setAccount(account: string){
 
+    //set the title of the description page
     this.currentAccount = account;
 
   }
 
   getAccount():string{
 
+    //return the title of the page
     return this.currentAccount;
     
   }

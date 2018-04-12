@@ -18,12 +18,14 @@ export class ImageServiceProvider {
 
   setPhoto(image: string){
 
+    //set the image to be shown
     this.currentImage = image;
 
   }
 
   getPhoto(): string{
 
+    //return this image
     return this.currentImage;
 
   }
