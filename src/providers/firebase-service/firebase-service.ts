@@ -21,6 +21,7 @@ export class FirebaseServiceProvider {
   currentUser: string;
   balance: number = 0;
   keyValue: any;
+  newBalance: number;
 
   constructor(public http: HttpModule, public afd: AngularFireDatabase, private alertCtrl: AlertController) {
     
@@ -214,12 +215,12 @@ export class FirebaseServiceProvider {
       var currentBalance: number = parseFloat(snap.child("balance").val());
 
       //add the negative value amount to the balance
-      var newBalance = -currentBalance +(+amount);
+      this.newBalance = -currentBalance +(+amount);
       
       //update the balance
       this.afd.object('/users/'+this.currentUser +"/accounts/" +debitAccount).update({
         
-        balance: newBalance
+        balance: this.newBalance
 
       });
 
