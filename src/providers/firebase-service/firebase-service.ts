@@ -211,18 +211,22 @@ export class FirebaseServiceProvider {
     //get the account balance 
     this.getBalance(creditAccount).then(snap=>{
 
-      //get the current balance
-      var currentBalance: number = parseFloat(snap.child("balance").val());
+      return snap;
 
-      //add the negative value amount to the balance
-      this.newBalance = -currentBalance +(+amount);
+    }).then(snapshot =>{
+
+            //get the current balance
+            var currentBalance: number = parseFloat(snapshot.child("balance").val());
+
+            //add the negative value amount to the balance
+            this.newBalance = -currentBalance +(+amount);
+            
+            //update the balance
+            this.afd.object('/users/'+this.currentUser +"/accounts/" +debitAccount).update({
+              
+              balance: this.newBalance
       
-      //update the balance
-      this.afd.object('/users/'+this.currentUser +"/accounts/" +debitAccount).update({
-        
-        balance: this.newBalance
-
-      });
+            });
 
     });
     
