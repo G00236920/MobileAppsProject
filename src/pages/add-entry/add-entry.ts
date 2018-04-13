@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TitleProvider } from '../../providers/title/title';
-import { AccountDetailsPage } from '../account-details/account-details';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
@@ -69,7 +68,7 @@ export class AddEntryPage {
 
   takePhoto(){
 
-    let image = this.camera.getPicture(this.options).then((imageData) => {
+    this.camera.getPicture(this.options).then((imageData) => {
 
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
 

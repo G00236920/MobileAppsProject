@@ -1,14 +1,11 @@
 import { HttpModule } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireList } from 'angularfire2/database';
-import { AlertController, Nav, NavController } from 'ionic-angular';
-import { LoginPage } from '../../pages/login/login'
+import { AlertController } from 'ionic-angular';
 
 import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/map';
-import { Title } from '@angular/platform-browser';
 
 /*
   Generated class for the FirebaseServiceProvider provider.
@@ -163,7 +160,7 @@ export class FirebaseServiceProvider {
     };
 
     //connect to the credit state, for the xurrent user and add the values to the account the user is viewing
-    var newRef = this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).then(snap =>{
+    this.afd.list('/users/'+this.currentUser +"/accounts/" +creditAccount +"/credited").push(newItem).then(snap =>{
       
       //debit the account the user has requested, using the same info the user has entered on the creited account
       this.debit(debitAccount,amount,creditAccount, title, snap.key, imageString);

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TabsPage } from '../tabs/tabs';
-import { AccountDetailsPage } from '../account-details/account-details';
 
 
 @Component({
@@ -37,7 +36,7 @@ export class NewPage {
     else{
 
       //get all the accounts for the user in the database
-      let accounts = this.afd.checkAccounts().then( listOfAccounts =>{
+      this.afd.checkAccounts().then( listOfAccounts =>{
 
         //if the account name has not been found 
         if(listOfAccounts.child(this.accountName.toLowerCase()).val() == null){

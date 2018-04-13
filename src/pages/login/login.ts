@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { AngularFireList } from 'angularfire2/database';
-import { DataSnapshot } from '@firebase/database';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -56,7 +55,7 @@ export class LoginPage {
     if (this.userLogin != null && this.userPassword != null) {
 
       //connect to firebase, then return the result
-      let test = this.afd.getUsers(this.userLogin, this.userPassword).then(loginData => {
+      this.afd.getUsers(this.userLogin, this.userPassword).then(loginData => {
 
         //if the password matches the user password, 
         if (this.userPassword.valueOf() == loginData.child("password").val()) {
