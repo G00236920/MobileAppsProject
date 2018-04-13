@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams } from 'ionic-angular';
 import { TitleProvider } from '../../providers/title/title';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { AddEntryPage } from '../add-entry/add-entry';
@@ -13,7 +13,6 @@ import { ImageServiceProvider } from  '../../providers/image-service/image-servi
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-account-details',
   templateUrl: 'account-details.html',

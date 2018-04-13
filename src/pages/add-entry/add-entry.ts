@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { TitleProvider } from '../../providers/title/title';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -11,7 +11,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-add-entry',
   templateUrl: 'add-entry.html',
@@ -26,7 +25,7 @@ export class AddEntryPage {
   base64Image: string;
 
   options: CameraOptions = {
-    quality: 20,
+    quality: 5,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE

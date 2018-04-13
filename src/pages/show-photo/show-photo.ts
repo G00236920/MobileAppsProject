@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ImageServiceProvider } from  '../../providers/image-service/image-service';
 
 /**
@@ -9,7 +9,6 @@ import { ImageServiceProvider } from  '../../providers/image-service/image-servi
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-show-photo',
   templateUrl: 'show-photo.html',

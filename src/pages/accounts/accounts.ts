@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
-import { AccountDetailsPage } from '../account-details/account-details'
-import { TitleProvider } from '../../providers/title/title'
+import { AccountDetailsPage } from '../account-details/account-details';
+import { TitleProvider } from '../../providers/title/title';
 
 @Component({
   selector: 'page-accounts',

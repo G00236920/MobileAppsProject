@@ -71,7 +71,6 @@ const fbConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseServiceProvider,
-    AccountDetailsPage,
     TitleProvider,
     Camera,
     ImageServiceProvider
